@@ -1,0 +1,67 @@
+docker run --name mysql-olake -e MYSQL_ROOT_PASSWORD=root -e MYSQL_USER=root -e MYSQL_PASSWORD=root -p 3306:3306 -d mysql:latest
+
+docker exec -it mysql-olake mysql -uroot -proot
+
+CREATE DATABASE shop_db;
+USE shop_db;
+CREATE TABLE orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_name VARCHAR(100),
+    amount DECIMAL(10, 2),
+    order_date DATE
+);
+INSERT INTO orders (customer_name, amount, order_date) VALUES
+('Alice Johnson', 120.50, '2024-06-15'),
+('Bob Smith', 89.99, '2024-06-16'),
+('Charlie Davis', 45.75, '2024-06-17'),
+('Dana White', 240.00, '2024-06-18'),
+('Ethan Hunt', 310.10, '2024-06-19'),
+('Fiona Gallagher', 150.20, '2024-06-20'),
+('George Lopez', 75.00, '2024-06-21'),
+('Hannah Brown', 205.30, '2024-06-22'),
+('Isaac Newton', 98.45, '2024-06-23'),
+('Julia Roberts', 180.90, '2024-06-24');
+
+docker exec -i mysql-olake mysql -uroot -proot -e "USE shop_db; SELECT * FROM orders;"
+
+# Step 1: Create config.json for MySQL connection
+# Content of config.json:
+# {
+#     "hosts": "172.17.0.2",
+#     "username": "root",
+#     "password": "root",
+#     "database": "shop_db",
+#     "port": 3306,
+#     "tls_skip_verify": true,
+#     "update_method": {
+#       "intial_wait_time": 10
+#     },
+#     "default_mode": "cdc",
+#     "max_threads": 5,
+#     "backoff_retry_count": 4
+# }
+
+# Step 2: Create writer.json for output configuration
+# Content of writer.json:
+# {
+#   "type": "PARQUET",
+#   "writer": {
+#     "normalization": true,
+#     "local_path": "/mnt/config/output"
+#   }
+# }
+
+# Step 3: Run the discover command to generate catalog.json
+$currentPath = (Get-Location).Path.Replace('\', '/'); docker run --pull=always --network=bridge -v "${currentPath}:/mnt/config" olakego/source-mysql:latest discover --config /mnt/config/config.json
+
+# Step 4: Create output directory
+mkdir -p output
+
+# Step 5: Run the sync command to replicate data
+$path = (Get-Location).Path.Replace('\', '/'); docker run --network=bridge -v "${path}:/mnt/config" olakego/source-mysql:latest sync --config /mnt/config/config.json --catalog /mnt/config/catalog.json --destination /mnt/config/writer.json
+
+# For future incremental syncs using the generated state.json file:
+# $path = (Get-Location).Path.Replace('\', '/'); docker run --network=bridge -v "${path}:/mnt/config" olakego/source-mysql:latest sync --config /mnt/config/config.json --catalog /mnt/config/catalog.json --destination /mnt/config/writer.json --state /mnt/config/state.json
+
+
+

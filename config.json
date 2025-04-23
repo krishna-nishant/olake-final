@@ -1,0 +1,14 @@
+{
+    "hosts": "172.17.0.2",
+    "username": "root",
+    "password": "root",
+    "database": "shop_db",
+    "port": 3306,
+    "tls_skip_verify": true,
+    "update_method": {
+      "intial_wait_time": 10
+    },
+    "default_mode": "cdc",
+    "max_threads": 5,
+    "backoff_retry_count": 4
+} 

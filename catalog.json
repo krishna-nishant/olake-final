@@ -1,0 +1,30 @@
+{
+  "selected_streams": {
+    "shop_db": [
+      { "split_column": "", "partition_regex": "", "stream_name": "orders" }
+    ]
+  },
+  "streams": [
+    {
+      "stream": {
+        "name": "orders",
+        "namespace": "shop_db",
+        "type_schema": {
+          "properties": {
+            "_cdc_deleted_at": { "type": ["timestamp", "null"] },
+            "_olake_id": { "type": ["string", "null"] },
+            "_olake_insert_time": { "type": ["null", "integer"] },
+            "amount": { "type": ["number", "null"] },
+            "customer_name": { "type": ["string", "null"] },
+            "id": { "type": ["integer"] },
+            "order_date": { "type": ["timestamp", "null"] }
+          }
+        },
+        "supported_sync_modes": ["full_refresh", "cdc"],
+        "source_defined_primary_key": ["id"],
+        "available_cursor_fields": [],
+        "sync_mode": "full_refresh"
+      }
+    }
+  ]
+}
