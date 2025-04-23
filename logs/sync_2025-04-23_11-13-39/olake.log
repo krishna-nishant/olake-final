@@ -1,0 +1,19 @@
+{"level":"info","time":"2025-04-23T11:13:39Z","message":"System has 3GB RAM, setting iceberg writer batch size to 209715200 bytes"}
+{"level":"info","time":"2025-04-23T11:13:39Z","message":"Running sync with state: null"}
+{"level":"info","time":"2025-04-23T11:13:39Z","message":"local writer configuration found, writing at location[/mnt/config/output]"}
+{"level":"info","message":"Found CDC Configuration","time":"2025-04-23T11:13:39Z"}
+{"level":"info","time":"2025-04-23T11:13:39Z","message":"Starting discover for MySQL database shop_db"}
+{"level":"info","time":"2025-04-23T11:13:39Z","message":"producing type schema for stream [shop_db.orders]"}
+{"level":"info","time":"2025-04-23T11:13:39Z","message":"Valid selected streams are shop_db.orders"}
+{"level":"info","message":"Starting ChangeStream process in driver","time":"2025-04-23T11:13:39Z"}
+{"level":"info","time":"2025-04-23T11:13:39Z","message":"Reading stream[shop_db.orders] in full_refresh"}
+{"level":"info","time":"2025-04-23T11:13:39Z","message":"Stream shop_db.orders extremes - min: 1, max: 5"}
+{"level":"info","time":"2025-04-23T11:13:39Z","message":"Starting backfill for stream[orders] with 2 chunks"}
+{"level":"debug","time":"2025-04-23T11:13:39Z","message":"Deleted file [/mnt/config/output/shop_db/orders/2025-4-23_11-13-39_01JSH5MYW11Y0TBDADA5QMV2S7.parquet] with 0 records (no records written)."}
+{"level":"info","time":"2025-04-23T11:13:39Z","message":"chunk[1] with min[1]-max[<nil>] completed in 0.07 seconds"}
+{"level":"info","time":"2025-04-23T11:13:39Z","message":"Finished writing file [/mnt/config/output/shop_db/orders/2025-4-23_11-13-39_01JSH5MYWP1M53XGZV9BRXZCQ0.parquet] with 5 records."}
+{"level":"info","time":"2025-04-23T11:13:39Z","message":"chunk[2] with min[<nil>]-max[1] completed in 0.09 seconds"}
+{"level":"debug","time":"2025-04-23T11:13:39Z","message":"Deleted file [/mnt/config/output/shop_db/orders/2025-4-23_11-13-39_01JSH5MYWP1M53XGZV98WV22EW.parquet] with 0 records (no records written)."}
+{"level":"info","time":"2025-04-23T11:13:39Z","message":"Finished writing file [/mnt/config/output/shop_db/orders/2025-4-23_11-13-39_01JSH5MYWTJ8F1S084JHXS8649.parquet] with 1 records."}
+{"level":"info","time":"2025-04-23T11:13:39Z","message":"Finished reading stream orders[shop_db] in 153.751945ms"}
+{"level":"fatal","time":"2025-04-23T11:13:39Z","message":"error occurred while reading records: failed to get current binlog position: failed to get master status: Error 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'MASTER STATUS' at line 1"}

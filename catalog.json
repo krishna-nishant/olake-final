@@ -13,7 +13,7 @@
           "properties": {
             "_cdc_deleted_at": { "type": ["timestamp", "null"] },
             "_olake_id": { "type": ["string", "null"] },
-            "_olake_insert_time": { "type": ["null", "integer"] },
+            "_olake_insert_time": { "type": ["integer", "null"] },
             "amount": { "type": ["number", "null"] },
             "customer_name": { "type": ["string", "null"] },
             "id": { "type": ["integer"] },

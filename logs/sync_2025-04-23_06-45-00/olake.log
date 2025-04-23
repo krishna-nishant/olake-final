@@ -1,5 +1,0 @@
-{"level":"info","time":"2025-04-23T06:45:00Z","message":"System has 3GB RAM, setting iceberg writer batch size to 209715200 bytes"}
-{"level":"info","message":"Found CDC Configuration","time":"2025-04-23T06:45:00Z"}
-{"level":"info","time":"2025-04-23T06:45:00Z","message":"Starting discover for MySQL database shop_db"}
-{"level":"info","time":"2025-04-23T06:45:00Z","message":"producing type schema for stream [shop_db.orders]"}
-{"level":"info","message":{"type":"CATALOG","catalog":{"selected_streams":{"shop_db":[{"split_column":"","partition_regex":"","stream_name":"orders"}]},"streams":[{"stream":{"name":"orders","namespace":"shop_db","type_schema":{"properties":{"_cdc_deleted_at":{"type":["timestamp","null"]},"_olake_id":{"type":["string","null"]},"_olake_insert_time":{"type":["integer","null"]},"amount":{"type":["number","null"]},"customer_name":{"type":["string","null"]},"id":{"type":["integer"]},"order_date":{"type":["timestamp","null"]}}},"supported_sync_modes":["cdc","full_refresh"],"source_defined_primary_key":["id"],"available_cursor_fields":[],"sync_mode":"cdc"}}]}},"time":"2025-04-23T06:45:00Z"}
