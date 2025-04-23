@@ -1,5 +1,7 @@
 # MySQL Data Replication to Parquet
 
+👉 **Checkout the demo video here:** [https://www.loom.com/share/36df8b4220154f4b8e2b21d1e2849991?sid=f944a523-b5ad-4902-8589-a14b730f84df](https://www.loom.com/share/36df8b4220154f4b8e2b21d1e2849991?sid=f944a523-b5ad-4902-8589-a14b730f84df)
+
 This project demonstrates how to replicate data from a MySQL database to Parquet files using olakego containers.
 
 ## Instructions
